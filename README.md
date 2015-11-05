@@ -15,10 +15,10 @@ meant to be!
 
 To configure slf4j-syslog4j there are several system properties to be set:
 
-`syslog4j.level = DEBUG | INFO | WARN | any syslog level`
+`syslog4j.level = DEBUG | INFO | WARN | any syslog level
 
-`syslog4j.facility = USER | DAEMON | KERN | any syslog facility`
+syslog4j.facility = USER | DAEMON | KERN | any syslog facility
 
-`syslog4j.ident = <your app id>`
+syslog4j.ident = <your app id>`
 
 

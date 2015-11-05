@@ -20,11 +20,35 @@ public class Syslog4JLoggerFactory implements ILoggerFactory {
 
     public Syslog4JLoggerFactory() {
         loggerMap = new ConcurrentHashMap<String, Logger>();
-        level = Integer.parseInt(System.getProperty("syslog4j.level", "4"));
+        level = convertLevel(System.getProperty("syslog4j.level", "WARN"));
         syslog = Syslog.getInstance("unix_syslog");
         syslog.getConfig().setIdent(System.getProperty("syslog4j.ident", "syslog4j"));
         syslog.getConfig().setFacility(System.getProperty("syslog4j.facility", "USER"));
 
+    }
+
+    private Integer convertLevel(String levelString) {
+        switch (levelString.toUpperCase()) {
+            case "DEBUG":
+                return Syslog.LEVEL_DEBUG;
+            case "INFO":
+                return Syslog.LEVEL_INFO;
+            case "WARN":
+                return Syslog.LEVEL_WARN;
+            case "ERROR":
+                return Syslog.LEVEL_ERROR;
+            case "NOTICE":
+                return Syslog.LEVEL_NOTICE;
+            case "EMERG":
+                return Syslog.LEVEL_EMERGENCY;
+            case "CRIT":
+                return Syslog.LEVEL_CRITICAL;
+            case "ALERT":
+                return Syslog.LEVEL_ALERT;
+            default:
+                return Syslog.LEVEL_WARN;
+
+        }
     }
 
     public Logger getLogger(String name) {

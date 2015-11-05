@@ -7,6 +7,18 @@
     <groupId>org.slf4j</groupId>
     <artifactId>slf4j-syslog4j</artifactId>
     <version>1.0.0-SNAPSHOT</version>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.7</source>
+                    <target>1.7</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
     <name>SLF4J Syslog4J Binding</name>
 
     <dependencies>
@@ -20,13 +32,6 @@
             <artifactId>jna</artifactId>
             <version>3.2.7</version>
         </dependency>
-        <!--
-        <dependency>
-            <groupId>net.java.dev.jna</groupId>
-            <artifactId>jna-platform</artifactId>
-            <version>3.2.7</version>
-        </dependency>
-        -->
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>

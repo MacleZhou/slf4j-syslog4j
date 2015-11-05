@@ -22,6 +22,7 @@ public class Syslog4JLoggerAdapter extends MarkerIgnoringBase implements Locatio
 
     Syslog4JLoggerAdapter(SyslogIF syslog, Integer level) {
         this.syslog = syslog;
+        this.level = level;
         //SyslogIF syslog = Syslog.getInstance("udp");
         //syslog.info("This is another INFO level log entry.");
     }
