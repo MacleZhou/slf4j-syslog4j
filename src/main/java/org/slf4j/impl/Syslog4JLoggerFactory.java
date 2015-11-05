@@ -33,8 +33,6 @@ public class Syslog4JLoggerFactory implements ILoggerFactory {
                 return Syslog.LEVEL_DEBUG;
             case "INFO":
                 return Syslog.LEVEL_INFO;
-            case "WARN":
-                return Syslog.LEVEL_WARN;
             case "ERROR":
                 return Syslog.LEVEL_ERROR;
             case "NOTICE":
@@ -45,6 +43,7 @@ public class Syslog4JLoggerFactory implements ILoggerFactory {
                 return Syslog.LEVEL_CRITICAL;
             case "ALERT":
                 return Syslog.LEVEL_ALERT;
+            case "WARN":
             default:
                 return Syslog.LEVEL_WARN;
 
@@ -52,13 +51,9 @@ public class Syslog4JLoggerFactory implements ILoggerFactory {
     }
 
     public Logger getLogger(String name) {
-        if (loggerMap.containsKey(name)) {
+        if (loggerMap.containsKey(name) && loggerMap.get(name)!=null) {
             return loggerMap.get(name);
         } else {
-//            syslog = Syslog.getInstance("unix_syslog");
-//            syslog.getConfig().setIdent(name);
-//            syslog.getConfig().setFacility();
-            //syslog.getConfig().setFacility("kernel");
             Logger logger = new Syslog4JLoggerAdapter(syslog, level);
             loggerMap.put(name, logger);
             return logger;
