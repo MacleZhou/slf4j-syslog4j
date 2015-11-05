@@ -5,6 +5,10 @@ import org.productivity.java.syslog4j.SyslogIF;
 import org.slf4j.ILoggerFactory;
 import org.slf4j.Logger;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.Properties;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
@@ -20,11 +24,24 @@ public class Syslog4JLoggerFactory implements ILoggerFactory {
 
     public Syslog4JLoggerFactory() {
         loggerMap = new ConcurrentHashMap<String, Logger>();
-        level = convertLevel(System.getProperty("syslog4j.level", "WARN"));
+        Properties syslog4jProperties = new Properties();
+        if (System.getProperties().containsKey("syslog4j.configurationFile")) {
+            try {
+                syslog4jProperties.load(new FileInputStream(new File(System.getProperty("syslog4j.configurationFile"))));
+            } catch (IOException e) {
+                syslog4jProperties = System.getProperties();
+            }
+        } else {
+            try {
+                syslog4jProperties.load(this.getClass().getResourceAsStream("/syslog4j.properties"));
+            } catch (IOException | NullPointerException e) {
+                syslog4jProperties = System.getProperties();
+            }
+        }
+        level = convertLevel(syslog4jProperties.getProperty("syslog4j.level", "WARN"));
         syslog = Syslog.getInstance("unix_syslog");
-        syslog.getConfig().setIdent(System.getProperty("syslog4j.ident", "syslog4j"));
-        syslog.getConfig().setFacility(System.getProperty("syslog4j.facility", "USER"));
-
+        syslog.getConfig().setIdent(syslog4jProperties.getProperty("syslog4j.ident", "syslog4j"));
+        syslog.getConfig().setFacility(syslog4jProperties.getProperty("syslog4j.facility", "USER"));
     }
 
     private Integer convertLevel(String levelString) {

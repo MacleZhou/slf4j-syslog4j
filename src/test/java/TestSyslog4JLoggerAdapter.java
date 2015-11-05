@@ -17,9 +17,9 @@ public class TestSyslog4JLoggerAdapter {
 
     @BeforeClass
     public static void setup() {
-        System.setProperty("syslog4j.ident", "test");
-        System.setProperty("syslog4j.facility", "auth");
-        System.setProperty("syslog4j.level", "INFO");
+//        System.setProperty("syslog4j.ident", "test");
+//        System.setProperty("syslog4j.facility", "auth");
+//        System.setProperty("syslog4j.level", "INFO");
     }
     @Test
     public void testLogging() {
