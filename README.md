@@ -14,6 +14,7 @@ meant to be!
 **Configuration**
 
 There are only a few simple options for configuration:
+
 1. Add system properties syslog4j.facility, syslog4j.level and syslog4j.ident
 
 2. Add a single system property syslog4j.configurationFile with the path to a properties
