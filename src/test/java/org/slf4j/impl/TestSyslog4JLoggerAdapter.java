@@ -1,4 +1,5 @@
-import org.junit.Before;
+package org.slf4j.impl;
+
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.productivity.java.syslog4j.Syslog;
@@ -38,7 +39,7 @@ public class TestSyslog4JLoggerAdapter {
     @Test
     public void testDebugLogging() {
         try {
-            logger.debug(notice, "TEST debug");
+            logger.debug(notice, "TEST debug with a marker");
         } catch (Exception e) {
             fail(e.getMessage());
             e.printStackTrace();
