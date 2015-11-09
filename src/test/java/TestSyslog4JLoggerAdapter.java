@@ -26,6 +26,7 @@ public class TestSyslog4JLoggerAdapter {
         logger.debug("TEST debug");
         logger.info("TEST info!");
 
+
         logger.warn("Test throwable", new IOException("Some IOException"));
         logger.error("Error message");
     }

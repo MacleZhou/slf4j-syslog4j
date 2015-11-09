@@ -27,27 +27,27 @@ public class Syslog4JLoggerAdapter extends MarkerIgnoringBase implements Locatio
     }
 
     public boolean isTraceEnabled() {
-        return false;
+        return isDebugEnabled();
     }
 
     public void trace(String msg) {
-        if (isTraceEnabled()) debug(msg);
+        debug(msg);
     }
 
     public void trace(String format, Object arg) {
-        if (isTraceEnabled()) debug(format, arg);
+        debug(format, arg);
     }
 
     public void trace(String format, Object arg1, Object arg2) {
-        if (isTraceEnabled()) debug(format, arg1, arg2);
+        debug(format, arg1, arg2);
     }
 
     public void trace(String format, Object... arguments) {
-        if (isTraceEnabled()) debug(format, arguments);
+        debug(format, arguments);
     }
 
     public void trace(String msg, Throwable t) {
-        if (isTraceEnabled()) debug(msg, t);
+        debug(msg, t);
     }
 
     public boolean isDebugEnabled() {
