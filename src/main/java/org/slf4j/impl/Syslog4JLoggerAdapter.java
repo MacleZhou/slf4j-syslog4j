@@ -2,11 +2,9 @@ package org.slf4j.impl;
 
 import org.productivity.java.syslog4j.Syslog;
 import org.productivity.java.syslog4j.SyslogIF;
-import org.slf4j.Marker;
 import org.slf4j.helpers.FormattingTuple;
 import org.slf4j.helpers.MarkerIgnoringBase;
 import org.slf4j.helpers.MessageFormatter;
-import org.slf4j.spi.LocationAwareLogger;
 
 import java.io.PrintWriter;
 import java.io.Serializable;
@@ -15,7 +13,7 @@ import java.io.StringWriter;
 /**
  * Created by jeffrey on 4/11/2015.
  */
-public class Syslog4JLoggerAdapter extends MarkerIgnoringBase implements LocationAwareLogger, Serializable {
+public class Syslog4JLoggerAdapter extends MarkerIgnoringBase implements Serializable {
 
     private static final long serialVersionUID = 1L;
     private final transient SyslogIF syslog;
@@ -196,30 +194,6 @@ public class Syslog4JLoggerAdapter extends MarkerIgnoringBase implements Locatio
             syslog.error(msg);
             for (String line : getStacktrace(t)) syslog.error(line);
         }
-    }
-
-    public void log(Marker marker, String callerFQCN, int level, String msg, Object[] argArray, Throwable t) {
-        int syslogLevel;
-        switch (level) {
-            case LocationAwareLogger.TRACE_INT:
-                syslogLevel = Syslog.LEVEL_DEBUG;
-                break;
-            case LocationAwareLogger.DEBUG_INT:
-                syslogLevel = Syslog.LEVEL_DEBUG;
-                break;
-            case LocationAwareLogger.INFO_INT:
-                syslogLevel = Syslog.LEVEL_INFO;
-                break;
-            case LocationAwareLogger.WARN_INT:
-                syslogLevel = Syslog.LEVEL_WARN;
-                break;
-            case LocationAwareLogger.ERROR_INT:
-                syslogLevel = Syslog.LEVEL_ERROR;
-                break;
-            default:
-                throw new IllegalStateException("Level number " + level + " is not recognized.");
-        }
-        syslog.log(syslogLevel, msg);
     }
 
     private String[] getStacktrace(Throwable throwable) {
