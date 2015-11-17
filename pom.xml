@@ -4,7 +4,7 @@
 
     <groupId>org.slf4j</groupId>
     <artifactId>slf4j-syslog4j</artifactId>
-    <version>1.0.1</version>
+    <version>1.0.2-SNAPSHOT</version>
     <build>
         <plugins>
             <plugin>
@@ -50,6 +50,6 @@
     </dependencies>
         <scm>
                 <developerConnection>scm:git:https://github.com/jlsheehan/slf4j-syslog4j.git</developerConnection>
-          <tag>slf4j-syslog4j-1.0.1</tag>
+          <tag>HEAD</tag>
         </scm>
 </project>
