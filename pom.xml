@@ -3,9 +3,42 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.slf4j</groupId>
+    <groupId>net.sheehantech.slf4jsyslog4j</groupId>
     <artifactId>slf4j-syslog4j</artifactId>
     <version>1.0.2-SNAPSHOT</version>
+
+    <name>SLF4J Syslog4J Binding</name>
+
+    <scm>
+        <developerConnection>scm:git:https://github.com/jlsheehan/slf4j-syslog4j.git</developerConnection>
+        <tag>HEAD</tag>
+    </scm>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.syslog4j</groupId>
+            <artifactId>syslog4j</artifactId>
+            <version>0.9.30</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>1.7.12</version>
+        </dependency>
+        <dependency>
+            <groupId>net.java.dev.jna</groupId>
+            <artifactId>jna</artifactId>
+            <version>3.2.7</version>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
     <build>
         <plugins>
             <plugin>
@@ -23,55 +56,5 @@
             </plugin>
         </plugins>
     </build>
-    <name>SLF4J Syslog4J Binding</name>
 
-    <dependencies>
-        <dependency>
-            <groupId>org.syslog4j</groupId>
-            <artifactId>syslog4j</artifactId>
-            <version>0.9.30</version>
-        </dependency>
-        <dependency>
-            <groupId>net.java.dev.jna</groupId>
-            <artifactId>jna</artifactId>
-            <version>3.2.7</version>
-            <scope>runtime</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-            <version>1.7.12</version>
-        </dependency>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.12</version>
-            <scope>test</scope>
-        </dependency>
-    </dependencies>
-    <scm>
-        <developerConnection>scm:git:https://github.com/jlsheehan/slf4j-syslog4j.git</developerConnection>
-        <tag>HEAD</tag>
-    </scm>
-    <profiles>
-        <profile>
-            <id>deploy-home</id>
-            <activation>
-                <property>
-                    <name>env.HOSTNAME</name>
-                    <value>Jeffreys-iMac.gateway</value>
-                </property>
-            </activation>
-            <distributionManagement>
-                <repository>
-                    <id>internal</id>
-                    <url>http://localhost/repository/internal</url>
-                </repository>
-                <snapshotRepository>
-                    <id>snapshots</id>
-                    <url>http://localhost/repository/snapshots</url>
-                </snapshotRepository>
-            </distributionManagement>
-        </profile>
-    </profiles>
 </project>
